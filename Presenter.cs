@@ -20,6 +20,10 @@ namespace Store
             this.dataHandler = dataHendler;
             form.GetDataOrders += () => GetDataOrders();
             form.DeleteOrder += () => DeleteOrder();
+            form.UpdateOrder += () => UpdateOrder();
+            form.CreateOrder += () => CreateOrder();
+            form.ChoiceClient += () => ChoiceClient();
+            form.ChoiceProduct += () => ChoiceProduct();
 
             form.Show();
 
@@ -42,7 +46,14 @@ namespace Store
 
         void UpdateOrder()
         {
+            dataHandler.UpdateOrder(form.OrderIndex, form.ClientIndex, form.ProductIndex, form.Date);
+            this.GetDataOrders();
+        }
 
+        void CreateOrder()
+        {
+            dataHandler.CreateOrder(form.OrderIndex, form.ClientIndex, form.ProductIndex, form.Date);
+            this.GetDataOrders();
         }
 
         void ChangeProduct()
@@ -53,6 +64,15 @@ namespace Store
         void ChangeClient()
         {
 
+        }
+
+        void ChoiceClient()
+        {
+            form.AddClientsList(dataHandler.GetClientsList());
+        }
+        void ChoiceProduct()
+        {
+            form.AddProductsList(dataHandler.GetProductList());
         }
     }
 }

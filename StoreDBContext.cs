@@ -20,7 +20,6 @@ namespace Store
         public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<Productlist> Productlists { get; set; }
         public virtual DbSet<ViewOrder> ViewOrders { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -108,31 +107,6 @@ namespace Store
                     .IsRequired()
                     .HasMaxLength(20)
                     .HasColumnName("type");
-            });
-
-            modelBuilder.Entity<Productlist>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("productlists");
-
-                entity.Property(e => e.Count).HasColumnName("count");
-
-                entity.Property(e => e.Orderid).HasColumnName("orderid");
-
-                entity.Property(e => e.Productid).HasColumnName("productid");
-
-                entity.HasOne(d => d.Order)
-                    .WithMany()
-                    .HasForeignKey(d => d.Orderid)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("productlists_orderid_fkey");
-
-                entity.HasOne(d => d.Product)
-                    .WithMany()
-                    .HasForeignKey(d => d.Productid)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("productlists_productid_fkey");
             });
 
             OnModelCreatingPartial(modelBuilder);
