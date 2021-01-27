@@ -7,6 +7,9 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Store
 {
+    /// <summary>
+    /// Класс работы с данными
+    /// </summary>
     class DataHandler : DataHandlerInterface
     {
         List<Client> clients;
@@ -38,6 +41,36 @@ namespace Store
 
             return orders;
         }
+
+        public List<ViewProduct> GetDataProducts()
+        {
+            List<ViewProduct> products;
+            using (StoreDBContext db = new StoreDBContext())
+            {
+                products = db.ViewProducts.FromSqlRaw("SELECT ID, Type, Cost, Info from Products").ToList();
+                return products;
+            }
+        }
+
+        public List<ViewClient> GetDataClients()
+        {
+            List<ViewClient> clients;
+            using (StoreDBContext db = new StoreDBContext())
+            {
+                clients = db.ViewClients.FromSqlRaw("SELECT ID, Name, Phone from Clients").ToList();
+                return clients;
+            }
+        }
+        public void CreateOrder(int orderId, int indexClient, int indexProduct, DateTime dateTime)
+        {
+            using (StoreDBContext db = new StoreDBContext())
+            {
+                Order newOrder = new Order { Clientid = clients[indexClient].Id, Productid = products[indexProduct].Id, Date = dateTime };
+                db.Orders.Add(newOrder);
+                db.SaveChanges();
+            }
+        }
+
         public void DeleteOrder(int orderId)
         {
 
@@ -66,12 +99,48 @@ namespace Store
             }
         }
 
-        public void CreateOrder(int orderId, int indexClient, int indexProduct, DateTime dateTime)
+       
+        public void CreateClient(string name, string phone)
         {
             using (StoreDBContext db = new StoreDBContext())
             {
-                Order newOrder = new Order { Clientid = clients[indexClient].Id, Productid = products[indexProduct].Id, Date = dateTime };
-                db.Orders.Add(newOrder);
+                Client newClient = new Client { Name = name, Phone = phone };
+                db.Clients.Add(newClient);
+                db.SaveChanges();
+            }
+        }
+
+        public void DeleteClient(int clientId)
+        {
+
+            using (StoreDBContext db = new StoreDBContext())
+            {
+                Client delClient = (from client in db.Clients
+                                  where client.Id == clientId
+                                  select client).First();
+                db.Clients.Remove(delClient);
+                db.SaveChanges();
+            }
+        }
+        public void CreateProduct(string type, float cost, string info)
+        {
+            using (StoreDBContext db = new StoreDBContext())
+            {
+                Product newProduct = new Product { Type = type, Cost = cost, Info = info };
+                db.Products.Add(newProduct);
+                db.SaveChanges();
+            }
+        }
+
+        public void DeleteProduct(int productId)
+        {
+
+            using (StoreDBContext db = new StoreDBContext())
+            {
+                Product delProduct = (from product in db.Products
+                                    where product.Id == productId
+                                    select product).First();
+                db.Products.Remove(delProduct);
                 db.SaveChanges();
             }
         }

@@ -7,6 +7,9 @@ using System.Windows.Forms;
 
 namespace Store
 {
+    /// <summary>
+    /// Класс связывающий форму и класс работы с данными
+    /// </summary>
     class Presenter
     {
 
@@ -15,27 +18,44 @@ namespace Store
         DataHandlerInterface dataHandler;
         public Presenter(MainFormInterface form, DataHandlerInterface dataHendler)
         {
-
             this.form = form;
             this.dataHandler = dataHendler;
             form.GetDataOrders += () => GetDataOrders();
+            form.GetDataProduct += () => GetDataProduct();
+            form.GetDataClients += () => GetDataClient();
+            form.CreateOrder += () => CreateOrder();
             form.DeleteOrder += () => DeleteOrder();
             form.UpdateOrder += () => UpdateOrder();
-            form.CreateOrder += () => CreateOrder();
+            form.CreateProduct += () => CreateProduct();
+            form.DeleteProduct += () => DeleteProduct();
+            form.CreateClient += () => CreateClient();
+            form.DeleteClient += () => DeleteClient();
             form.ChoiceClient += () => ChoiceClient();
             form.ChoiceProduct += () => ChoiceProduct();
 
+
             form.Show();
-
-            
-
-
         }
 
         void GetDataOrders()
         {
             var orders = dataHandler.GetDataOrders();
             form.ShowOrders(orders);
+        }
+        void GetDataProduct()
+        {
+            var products = dataHandler.GetDataProducts();
+            form.ShowProduct(products);
+        }
+        void GetDataClient()
+        {
+            var clients = dataHandler.GetDataClients();
+            form.ShowClient(clients);
+        }
+        void CreateOrder()
+        {
+            dataHandler.CreateOrder(form.OrderIndex, form.ClientIndex, form.ProductIndex, form.Date);
+            this.GetDataOrders();
         }
 
         void DeleteOrder()
@@ -48,22 +68,31 @@ namespace Store
         {
             dataHandler.UpdateOrder(form.OrderIndex, form.ClientIndex, form.ProductIndex, form.Date);
             this.GetDataOrders();
+            
         }
 
-        void CreateOrder()
+        void CreateProduct()
         {
-            dataHandler.CreateOrder(form.OrderIndex, form.ClientIndex, form.ProductIndex, form.Date);
-            this.GetDataOrders();
+            dataHandler.CreateProduct(form.ProductType, form.ProductCost, form.ProductInfo);
+            this.GetDataProduct();
         }
 
-        void ChangeProduct()
+        void DeleteProduct()
         {
-
+            dataHandler.DeleteProduct(form.ProductIndexDel);
+            this.GetDataProduct();
         }
 
-        void ChangeClient()
+        void CreateClient()
         {
+            dataHandler.CreateClient(form.ClientName,form.ClientPhone);
+            this.GetDataClient();
+        }
 
+        void DeleteClient()
+        {
+            dataHandler.DeleteClient(form.ClientIndexDel);
+            this.GetDataClient();
         }
 
         void ChoiceClient()

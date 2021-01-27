@@ -21,6 +21,9 @@ namespace Store
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ViewOrder> ViewOrders { get; set; }
+        public virtual DbSet<ViewProduct> ViewProducts { get; set; }
+        public virtual DbSet<ViewClient> ViewClients { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -50,6 +53,19 @@ namespace Store
                     .IsRequired()
                     .HasMaxLength(12)
                     .HasColumnName("phone");
+            });
+
+            modelBuilder.Entity<ViewClient>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.Property(e => e.Number).HasColumnName("id");
+
+                entity.Property(e => e.Name).HasColumnName("name");
+
+                entity.Property(e => e.Phone).HasColumnType("phone");
+
+
             });
 
             modelBuilder.Entity<Order>(entity =>
@@ -107,6 +123,21 @@ namespace Store
                     .IsRequired()
                     .HasMaxLength(20)
                     .HasColumnName("type");
+            });
+
+            modelBuilder.Entity<ViewProduct>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.Property(e => e.Number).HasColumnName("id");
+
+                entity.Property(e => e.Type).HasColumnName("type");
+
+                entity.Property(e => e.Cost).HasColumnName("cost");
+
+                entity.Property(e => e.Info).HasColumnType("info");
+
+
             });
 
             OnModelCreatingPartial(modelBuilder);
