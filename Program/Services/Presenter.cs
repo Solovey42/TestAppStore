@@ -33,7 +33,6 @@ namespace Store
             form.ChoiceClient += () => ChoiceClient();
             form.ChoiceProduct += () => ChoiceProduct();
 
-
             form.Show();
         }
 

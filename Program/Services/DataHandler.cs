@@ -16,7 +16,7 @@ namespace Store
         List<Product> products;
         List<Order> orders;
 
-        public DataHandler() 
+/*        public DataHandler() 
         {
             using (StoreDBContext db = new StoreDBContext())
             {
@@ -24,7 +24,7 @@ namespace Store
                 products = db.Products.ToList();
                 orders = db.Orders.ToList();
             }
-        }
+        }*/
             
 
         public List<ViewOrder> GetDataOrders()
@@ -146,21 +146,29 @@ namespace Store
         }
         public List<string> GetClientsList()
         {
-            List<string> clientsName = new List<string>();
-            foreach (var client in clients)
+            using (StoreDBContext db = new StoreDBContext())
             {
-                clientsName.Add(client.Name);
+                List<Client> clients = db.Clients.ToList();
+                List<string> clientsName = new List<string>();
+            foreach (var client in clients)
+                {
+                    clientsName.Add(client.Name);
+                }
+                return clientsName;
             }
-            return clientsName;
         }
         public List<string> GetProductList()
         {
-            List<string> clientsType = new List<string>();
-            foreach (var product in products)
+            using (StoreDBContext db = new StoreDBContext())
             {
-                clientsType.Add(product.Type);
+                List<Product> products = db.Products.ToList();
+                List<string> productsType = new List<string>();
+                foreach (var product in products)
+                {
+                    productsType.Add(product.Type);
+                }
+                return productsType;
             }
-            return clientsType;
         }
     }
 }
