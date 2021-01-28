@@ -6,11 +6,10 @@ namespace Store
 {
     interface DataHandlerInterface
     {
-
         List<ViewOrder> GetDataOrders();
-        List<ViewProduct> GetDataProducts();
-        List<ViewClient> GetDataClients();
-        void CreateOrder(int orderId, int indexClient, int indexProduct, DateTime dateTime);
+        List<Product> GetDataProducts();
+        List<Client> GetDataClients();
+        void CreateOrder(int indexClient, int indexProduct, DateTime dateTime);
         void DeleteOrder(int orderId);
         void UpdateOrder(int orderId, int indexClient, int indexProduct, DateTime dateTime);
         void CreateClient(string name, string phone);

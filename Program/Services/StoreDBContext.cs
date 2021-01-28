@@ -8,22 +8,10 @@ namespace Store
 {
     public partial class StoreDBContext : DbContext
     {
-        public StoreDBContext()
-        {
-        }
-
-        public StoreDBContext(DbContextOptions<StoreDBContext> options)
-            : base(options)
-        {
-        }
-
         public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ViewOrder> ViewOrders { get; set; }
-        public virtual DbSet<ViewProduct> ViewProducts { get; set; }
-        public virtual DbSet<ViewClient> ViewClients { get; set; }
-
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -32,7 +20,6 @@ namespace Store
                 optionsBuilder.UseNpgsql("Host=127.0.0.1;Port=5432;Database=StoreDB;Username=postgres;Password=2363");
             }
         }
-     
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -53,19 +40,6 @@ namespace Store
                     .IsRequired()
                     .HasMaxLength(12)
                     .HasColumnName("phone");
-            });
-
-            modelBuilder.Entity<ViewClient>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.Property(e => e.Number).HasColumnName("id");
-
-                entity.Property(e => e.Name).HasColumnName("name");
-
-                entity.Property(e => e.Phone).HasColumnType("phone");
-
-
             });
 
             modelBuilder.Entity<Order>(entity =>
@@ -123,21 +97,6 @@ namespace Store
                     .IsRequired()
                     .HasMaxLength(20)
                     .HasColumnName("type");
-            });
-
-            modelBuilder.Entity<ViewProduct>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.Property(e => e.Number).HasColumnName("id");
-
-                entity.Property(e => e.Type).HasColumnName("type");
-
-                entity.Property(e => e.Cost).HasColumnName("cost");
-
-                entity.Property(e => e.Info).HasColumnType("info");
-
-
             });
 
             OnModelCreatingPartial(modelBuilder);

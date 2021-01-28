@@ -16,10 +16,10 @@ namespace Store
 
         MainFormInterface form;
         DataHandlerInterface dataHandler;
-        public Presenter(MainFormInterface form, DataHandlerInterface dataHendler)
+        public Presenter(MainFormInterface form, DataHandlerInterface dataHandler)
         {
             this.form = form;
-            this.dataHandler = dataHendler;
+            this.dataHandler = dataHandler;
             form.GetDataOrders += () => GetDataOrders();
             form.GetDataProduct += () => GetDataProduct();
             form.GetDataClients += () => GetDataClient();
@@ -53,7 +53,7 @@ namespace Store
         }
         void CreateOrder()
         {
-            dataHandler.CreateOrder(form.OrderIndex, form.ClientIndex, form.ProductIndex, form.Date);
+            dataHandler.CreateOrder(form.ClientIndex, form.ProductIndex, form.Date);
             this.GetDataOrders();
         }
 
