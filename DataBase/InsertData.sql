@@ -8,9 +8,9 @@ INSERT INTO products (Type, Cost, Info) VALUES ('Телевизор', 32500.50, 
 INSERT INTO products (Type, Cost, Info) VALUES ('Компьютер', 29999.99, 'Ядер процессора: 8, Оперативная память: 16');
 INSERT INTO products (Type, Cost, Info) VALUES ('Домашний кинотеатр', 41000, '6 колонок, 1 сабвуфер');
 
-INSERT INTO orders (ClientID, ProductID, "Date") VALUES (13, 5, '2021-01-23');
-INSERT INTO orders (ClientID, ProductID, "Date") VALUES (14, 6, '2020-12-30');
-INSERT INTO orders (ClientID, ProductID, "Date") VALUES (15, 5, '2021-01-09');
-INSERT INTO orders (ClientID, ProductID, "Date") VALUES (15, 6, '2021-01-11');
-INSERT INTO orders (ClientID, ProductID, "Date") VALUES (16, 7, '2021-01-12');
+INSERT INTO orders (ClientID, ProductID, "Date") VALUES (1, 1, '2021-01-23');
+INSERT INTO orders (ClientID, ProductID, "Date") VALUES (2, 2, '2020-12-30');
+INSERT INTO orders (ClientID, ProductID, "Date") VALUES (3, 3, '2021-01-09');
+INSERT INTO orders (ClientID, ProductID, "Date") VALUES (1, 4, '2021-01-11');
+INSERT INTO orders (ClientID, ProductID, "Date") VALUES (4, 2, '2021-01-12');
 
