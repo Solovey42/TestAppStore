@@ -34,8 +34,8 @@ namespace Store
         public string ClientPhone { get; }
 
         void ShowOrders(List<ViewOrder> orders);
-        void ShowProduct(List<ViewProduct> products);
-        void ShowClient(List<ViewClient> clients);
+        void ShowProduct(List<Product> products);
+        void ShowClient(List<Client> clients);
         void AddClientsList(List<String> list);
         void AddProductsList(List<String> list);
 

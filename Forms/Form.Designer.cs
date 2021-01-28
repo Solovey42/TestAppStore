@@ -29,7 +29,7 @@ namespace Store
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewOrders = new System.Windows.Forms.DataGridView();
             this.npgsqlConnection1 = new Npgsql.NpgsqlConnection();
             this.npgsqlDataAdapter1 = new Npgsql.NpgsqlDataAdapter();
             this.npgsqlCommand1 = new Npgsql.NpgsqlCommand();
@@ -46,15 +46,15 @@ namespace Store
             this.buttonUpdateOrder = new System.Windows.Forms.Button();
             this.buttonDeleteOrder = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.buttonCreateProduct = new System.Windows.Forms.Button();
             this.buttonDeleteProduct = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewProducts = new System.Windows.Forms.DataGridView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -62,26 +62,27 @@ namespace Store
             this.label7 = new System.Windows.Forms.Label();
             this.buttonCreateClient = new System.Windows.Forms.Button();
             this.buttonDeleteClient = new System.Windows.Forms.Button();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.dataGridViewClients = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrders)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProducts)).BeginInit();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewClients)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dataGridViewOrders
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridViewOrders.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(8, 15);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(603, 150);
-            this.dataGridView1.TabIndex = 0;
+            this.dataGridViewOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewOrders.Location = new System.Drawing.Point(8, 15);
+            this.dataGridViewOrders.Name = "dataGridViewOrders";
+            this.dataGridViewOrders.RowTemplate.Height = 25;
+            this.dataGridViewOrders.Size = new System.Drawing.Size(603, 150);
+            this.dataGridViewOrders.TabIndex = 0;
             // 
             // npgsqlConnection1
             // 
@@ -134,7 +135,7 @@ namespace Store
             this.tabPage.Controls.Add(this.comboBox1);
             this.tabPage.Controls.Add(this.buttonUpdateOrder);
             this.tabPage.Controls.Add(this.buttonDeleteOrder);
-            this.tabPage.Controls.Add(this.dataGridView1);
+            this.tabPage.Controls.Add(this.dataGridViewOrders);
             this.tabPage.Controls.Add(this.buttonUpdateOrders);
             this.tabPage.Location = new System.Drawing.Point(4, 24);
             this.tabPage.Name = "tabPage";
@@ -232,15 +233,15 @@ namespace Store
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.numericUpDown1);
             this.tabPage2.Controls.Add(this.label6);
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Controls.Add(this.label4);
             this.tabPage2.Controls.Add(this.textBox3);
-            this.tabPage2.Controls.Add(this.textBox2);
             this.tabPage2.Controls.Add(this.textBox1);
             this.tabPage2.Controls.Add(this.buttonCreateProduct);
             this.tabPage2.Controls.Add(this.buttonDeleteProduct);
-            this.tabPage2.Controls.Add(this.dataGridView2);
+            this.tabPage2.Controls.Add(this.dataGridViewProducts);
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -248,6 +249,19 @@ namespace Store
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Товары";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.DecimalPlaces = 2;
+            this.numericUpDown1.Location = new System.Drawing.Point(275, 250);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 23);
+            this.numericUpDown1.TabIndex = 9;
             // 
             // label6
             // 
@@ -279,21 +293,16 @@ namespace Store
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(274, 298);
+            this.textBox3.MaxLength = 100;
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(195, 40);
             this.textBox3.TabIndex = 5;
             // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(274, 249);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 23);
-            this.textBox2.TabIndex = 4;
-            // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(274, 200);
+            this.textBox1.MaxLength = 20;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 23);
             this.textBox1.TabIndex = 3;
@@ -316,16 +325,16 @@ namespace Store
             this.buttonDeleteProduct.Text = "Удалить товар";
             this.buttonDeleteProduct.UseVisualStyleBackColor = true;
             // 
-            // dataGridView2
+            // dataGridViewProducts
             // 
-            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridViewProducts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(8, 14);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 25;
-            this.dataGridView2.Size = new System.Drawing.Size(603, 150);
-            this.dataGridView2.TabIndex = 0;
+            this.dataGridViewProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewProducts.Location = new System.Drawing.Point(8, 14);
+            this.dataGridViewProducts.Name = "dataGridViewProducts";
+            this.dataGridViewProducts.RowTemplate.Height = 25;
+            this.dataGridViewProducts.Size = new System.Drawing.Size(603, 150);
+            this.dataGridViewProducts.TabIndex = 0;
             // 
             // tabPage1
             // 
@@ -335,7 +344,7 @@ namespace Store
             this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.buttonCreateClient);
             this.tabPage1.Controls.Add(this.buttonDeleteClient);
-            this.tabPage1.Controls.Add(this.dataGridView3);
+            this.tabPage1.Controls.Add(this.dataGridViewClients);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Size = new System.Drawing.Size(619, 346);
@@ -346,6 +355,7 @@ namespace Store
             // textBox5
             // 
             this.textBox5.Location = new System.Drawing.Point(278, 268);
+            this.textBox5.MaxLength = 12;
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(100, 23);
             this.textBox5.TabIndex = 7;
@@ -353,6 +363,7 @@ namespace Store
             // textBox4
             // 
             this.textBox4.Location = new System.Drawing.Point(278, 200);
+            this.textBox4.MaxLength = 20;
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(100, 23);
             this.textBox4.TabIndex = 6;
@@ -393,14 +404,14 @@ namespace Store
             this.buttonDeleteClient.Text = "Удалить клиента";
             this.buttonDeleteClient.UseVisualStyleBackColor = true;
             // 
-            // dataGridView3
+            // dataGridViewClients
             // 
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(8, 14);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.RowTemplate.Height = 25;
-            this.dataGridView3.Size = new System.Drawing.Size(603, 150);
-            this.dataGridView3.TabIndex = 0;
+            this.dataGridViewClients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewClients.Location = new System.Drawing.Point(8, 14);
+            this.dataGridViewClients.Name = "dataGridViewClients";
+            this.dataGridViewClients.RowTemplate.Height = 25;
+            this.dataGridViewClients.Size = new System.Drawing.Size(603, 150);
+            this.dataGridViewClients.TabIndex = 0;
             // 
             // Form
             // 
@@ -410,23 +421,24 @@ namespace Store
             this.Controls.Add(this.tabControl1);
             this.Name = "Form";
             this.Text = "Учет заказов";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrders)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage.ResumeLayout(false);
             this.tabPage.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProducts)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewClients)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewOrders;
         private Npgsql.NpgsqlConnection npgsqlConnection1;
         private Npgsql.NpgsqlDataAdapter npgsqlDataAdapter1;
         private Npgsql.NpgsqlCommand npgsqlCommand1;
@@ -448,11 +460,10 @@ namespace Store
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button buttonCreateProduct;
         private System.Windows.Forms.Button buttonDeleteProduct;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGridViewProducts;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.Button buttonDeleteClient;
         private System.Windows.Forms.TextBox textBox5;
@@ -460,6 +471,8 @@ namespace Store
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button buttonCreateClient;
+        private System.Windows.Forms.DataGridView dataGridViewClients;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }
 
